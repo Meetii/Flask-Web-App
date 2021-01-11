@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Booking Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register') }}"><i class="fa fa-user-circle-o"></i> Register</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('reservation') }}"><i class="fa fa-user-circle-o"></i> Make an Reservation</a>
+                </li>
+                 <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="fa fa-user-circle-o"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('history') }}"><i class="fa fa-user-circle-o"></i> History</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+</nav>
+
+
+ <div class="my-4">
+            {%  if airplanereservations %}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>ID</th>
+                            <th>Type of travel</th>
+                            <th>Travel from</th>
+                            <th>Travel to</th>
+                            <th>Price</th>
+                        </tr>
+                        {% for airplanereservation in airplanereservations %}
+                        <tr>
+                            <td>{{ airplanereservation.id_rezervacija }}</td>
+                            <td>{{ airplanereservation.tip_patuvanje }}</td>
+                            <td>{{ airplanereservation.patuva_od_grad }}</td>
+                            <td>{{ airplanereservation.patuva_do_grad }}</td>
+                            <td>{{ airplanereservation.cena }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    No Reservation was added yet!
+                </div>
+            {% endif %}
+ </div>
+</body>
+</html>
